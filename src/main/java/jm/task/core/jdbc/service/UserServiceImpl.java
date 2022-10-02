@@ -28,4 +28,29 @@ public class UserServiceImpl implements UserService {
     public void cleanUsersTable() {
 
     }
+
+    @Override
+    public void add(User user) {
+
+    }
+
+    @Override
+    public List<User> getAll() {
+        return null;
+    }
+
+    @Override
+    public User getById(Long id) {
+        return null;
+    }
+
+    @Override
+    public void update(User user) {
+
+    }
+
+    @Override
+    public void remove(User user) {
+
+    }
 }
