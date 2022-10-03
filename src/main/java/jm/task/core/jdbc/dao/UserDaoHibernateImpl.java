@@ -10,14 +10,14 @@ import org.hibernate.query.Query;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    private final SessionFactory sf = Util.getSessionFactory();
+    private final SessionFactory bin = Util.getSessionFactory();
     public UserDaoHibernateImpl() {
     }
 
 
     @Override
     public void createUsersTable() {
-        try (Session session =   sf.openSession()) {
+        try (Session session =   bin.openSession()) {
             session.beginTransaction();
             Query query = session.createSQLQuery("CREATE TABLE IF NOT EXISTS users " +
                     "(id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
@@ -33,7 +33,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        try (Session session = sf.openSession()) {
+        try (Session session = bin.openSession()) {
             session.beginTransaction();
             Query query = session.createSQLQuery("DROP TABLE IF EXISTS myDbTest.users").addEntity(User.class);
             query.executeUpdate();
@@ -47,7 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void saveUser(String name , String lastName, byte age) {
-        try (Session session = sf.openSession()) {
+        try (Session session = bin.openSession()) {
             session.beginTransaction();
             User user = new User (name, lastName, age);
             session.save(user);
@@ -60,7 +60,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void removeUserById (long id) {
-        try (Session session = sf.openSession()) {
+        try (Session session = bin.openSession()) {
             session.beginTransaction();
             User userTemp = session.get(User.class, id);
             session.delete(userTemp);
@@ -73,12 +73,12 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        return (List<User>) sf.openSession().createQuery("From User  ").list();
+        return (List<User>) bin.openSession().createQuery("From User").list();
     }
 
     @Override
     public void cleanUsersTable() {
-        try (Session session = sf.openSession()){
+        try (Session session = bin.openSession()){
             session.beginTransaction();
             Query query = session.createSQLQuery("Truncate table users");
             query.executeUpdate();
