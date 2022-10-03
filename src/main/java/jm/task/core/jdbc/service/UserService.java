@@ -17,13 +17,4 @@ public interface UserService {
 
     void cleanUsersTable();
 
-    void add(User user);
-
-    List<User> getAll();
-
-    User getById(Long id);
-
-    void update(User user);
-
-    void remove(User user);
 }

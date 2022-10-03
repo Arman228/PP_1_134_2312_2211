@@ -28,7 +28,7 @@ public class User {
         this.age = age;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -52,7 +52,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAge() {
+    public Byte getAge() {
         return age;
     }
 
@@ -61,8 +61,14 @@ public class User {
     }
 
     @Override
-    public String toString(){
-        return null;
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
+
 
 }
