@@ -56,7 +56,7 @@ public class Util {
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
-                Configuration configuration = new Configuration();
+                Configuration configuration = new Configuration().addAnnotatedClass(User.class);
 
 
                 Properties settings = new Properties();
@@ -74,7 +74,7 @@ public class Util {
 
                 configuration.setProperties(settings);
 
-                configuration.addAnnotatedClass(User.class);
+
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
